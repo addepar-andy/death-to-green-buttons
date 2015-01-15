@@ -1,12 +1,6 @@
-function toggleMergeButton(element) {
-  if (document.getElementsByClassName("js-issue-title")[0].textContent.indexOf("WIP") > -1) {
-    if (element.className.indexOf("primary") > -1) {
-      element.className = element.className.replace(/primary/g, 'disabled').replace(/js-details-target/g, '');
-    }
-  } else {
-    if (element.className.indexOf("disabled") > -1) {
-      element.className = element.className.replace(/disabled/g, 'primary js-details-target');
-    }
+function dieGreenButtonDie(element) {
+  if (element.className.indexOf("primary") > -1) {
+    element.className = element.className.replace(/primary/g, 'disabled').replace(/js-details-target/g, '');
   }
 }
 
@@ -23,7 +17,7 @@ function observeMergeButton() {
       if (mutation.type === 'characterData' || mutation.type === 'childList') {
         var elements = document.querySelectorAll('.merge-branch-action');
         Array.prototype.forEach.call(elements, function(element) {
-          toggleMergeButton(element);
+          dieGreenButtonDie(element);
         });
       }
     });
@@ -33,6 +27,6 @@ function observeMergeButton() {
 }
 
 window.onload = function() {
-  toggleMergeButton(document.querySelector(".merge-branch-action"));
+  dieGreenButtonDie(document.querySelector(".merge-branch-action"));
   observeMergeButton();
 }
