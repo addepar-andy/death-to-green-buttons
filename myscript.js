@@ -1,14 +1,13 @@
 function dieGreenButtonDie(element) {
   if (element.className.indexOf("primary") > -1) {
-    element.className = element.className.replace(/primary/g, 'disabled').replace(/js-details-target/g, '');
     var enable = null;
     var disable = function() {
       element.className = element.className.replace(/primary/g, 'disabled').replace(/js-details-target/g, '');
-      setTimeout(enable, 500);
+      setTimeout(enable, 50);
     }
     enable = function() {
       element.className = element.className.replace(/disabled/g, 'primary');
-      setTimeout(disable, 500);
+      setTimeout(disable, 50);
     }
     disable();
   }
@@ -40,3 +39,4 @@ window.onload = function() {
   dieGreenButtonDie(document.querySelector(".merge-branch-action"));
   observeMergeButton();
 }
+
